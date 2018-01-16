@@ -45,6 +45,42 @@
 
 char* solve(int year){
     // Complete this function
+
+    char* s = (char *)malloc(sizeof(char) * 11);
+
+    if(year < 1918 && year >= 1700){
+        // Julian Calendar
+        // leap years are divisible by 4
+        if(year % 4 == 0){
+            // Leap Year
+            // Answer is : 12th September
+            sprintf(s, "12.09.%d", year);
+        }
+        else {
+            // Non-Leap Year
+            // Answer is : 13th September
+            sprintf(s, "13.09.%d", year);
+        }
+    }
+    else if(year > 1918 && year <= 2700){
+        // Gregorian Calendar
+        // leap years are : divisible by 400 and divisible by 4 and not by 100
+        if((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)){
+            // Leap Year
+            // Answer is : 12th September
+            sprintf(s, "12.09.%d", year);
+        }
+        else {
+            // Non-Leap Year
+            // Answer is : 13th September
+            sprintf(s, "13.09.%d", year);
+        }
+    }
+    else{
+        // Transition Year
+        sprintf(s, "26.09.%d", year);
+    }
+    return s;
 }
 
 int main() {
